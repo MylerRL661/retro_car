@@ -1,0 +1,21 @@
+[gd_resource type="VisualShader" load_steps=2 format=3 uid="uid://djtaxp57qis13"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_au6hg"]
+input_name = "at_cubemap_pass"
+
+[resource]
+code = "shader_type sky;
+
+
+
+void sky() {
+}
+"
+mode = 3
+flags/use_half_res_pass = false
+flags/use_quarter_res_pass = false
+flags/disable_fog = false
+flags/use_debanding = false
+nodes/sky/0/position = Vector2(400, 120)
+nodes/sky/2/node = SubResource("VisualShaderNodeInput_au6hg")
+nodes/sky/2/position = Vector2(660, 200)

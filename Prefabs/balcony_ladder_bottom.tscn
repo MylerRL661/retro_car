@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccbxr7a3n21qh"]
+
+[ext_resource type="PackedScene" uid="uid://opfud4sedcd2" path="res://Assets/KenneyCity Assets/balconyLadder_bottom.glb" id="1_s2ne4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rsgkn"]
+size = Vector3(1, 0.768066, 0.383301)
+
+[node name="BalconyLadder_bottom" instance=ExtResource("1_s2ne4")]
+
+[node name="balconyLadder_bottom" parent="tmpParent" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.355225, -0.00366211)
+shape = SubResource("BoxShape3D_rsgkn")

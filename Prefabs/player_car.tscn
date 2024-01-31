@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm0on4wcdbjwp"]
+
+[ext_resource type="PackedScene" uid="uid://bee6ql2cy1erm" path="res://Prefabs/truck_grey.tscn" id="2_4ujud"]
+[ext_resource type="Script" path="res://Scripts/player_car.gd" id="2_vs7hh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4cqlq"]
+bounce = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q0ht3"]
+
+[node name="Car" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_4cqlq")
+gravity_scale = 5.0
+angular_damp = 10.0
+script = ExtResource("2_vs7hh")
+
+[node name="SphereCollider" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_q0ht3")
+
+[node name="Truck" parent="." instance=ExtResource("2_4ujud")]
+
+[node name="RayCast3D" type="RayCast3D" parent="Truck/truck_grey" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10206, -0.0274094, -0.0198746)
+
+[node name="CameraFollowNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.839436, -1.25278)
+metadata/_edit_lock_ = true
+
+[editable path="Truck"]
