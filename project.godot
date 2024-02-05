@@ -14,7 +14,17 @@ config/name="JanFeb Project"
 run/main_scene="res://Scenes/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/image="res://Assets/Images/SplashScreens/traditional-dark.png"
-config/icon="res://icon.svg"
+config/icon="res://Assets/icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "red",
+"res://Materials/": "orange",
+"res://Prefabs/": "yellow",
+"res://Scripts/": "green",
+"res://Shaders/": "purple"
+}
 
 [input]
 

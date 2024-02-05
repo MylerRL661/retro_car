@@ -22,8 +22,4 @@ shape = SubResource("SphereShape3D_q0ht3")
 [node name="RayCast3D" type="RayCast3D" parent="Truck/truck_grey" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10206, -0.0274094, -0.0198746)
 
-[node name="CameraFollowNode" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.839436, -1.25278)
-metadata/_edit_lock_ = true
-
 [editable path="Truck"]
