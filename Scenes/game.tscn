@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b886bx0ihn5su"]
+[gd_scene load_steps=14 format=3 uid="uid://b886bx0ihn5su"]
 
 [ext_resource type="Texture2D" uid="uid://b4qcnf7gbgf3a" path="res://Assets/Images/Skyboxes/sky-2.png" id="1_m1py8"]
 [ext_resource type="Texture2D" uid="uid://kd31cx7a6ojb" path="res://Assets/KenneyCity Assets/roadAsphalt_center_asphalt.png" id="2_fgrqx"]
@@ -29,6 +29,8 @@ material = SubResource("ORMMaterial3D_pwimb")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_djehh"]
 size = Vector3(15.13, 0.167, 14.316)
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_7q240"]
 
 [node name="Game" type="Node3D"]
 
@@ -73,8 +75,11 @@ top_level = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.871782, -2.28244)
 fov = 60.0
 script = ExtResource("5_hmiug")
-offset_y = Vector3(0, 4, 0)
-offset_z = Vector3(0, 0, 4)
+offset_y = Vector3(0, 2, 0)
+offset_z = Vector3(0, 0, 3)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = SubResource("MeshLibrary_7q240")
 
 [editable path="Player"]
 [editable path="Player/Truck"]
