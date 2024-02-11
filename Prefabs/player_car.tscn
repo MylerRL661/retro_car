@@ -18,7 +18,7 @@ steering = 25.0
 body_tilt = 15
 turn_speed_boost = 5
 acceleration_boost = 25
-jump_factor = 5
+jump_factor = 8
 torque = Vector3(0, 0, 1.5)
 
 [node name="SphereCollider" type="CollisionShape3D" parent="."]
