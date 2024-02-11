@@ -22,6 +22,9 @@ var sphere_offset = Vector3.DOWN
 @export var acceleration_boost = 65
 # Amount the car jumps by
 @export var jump_factor = 10
+@export var torque = Vector3(0, 0, 0)
+
+#for caching original values
 var orig_turn_speed
 var orig_acceleration
 
@@ -48,8 +51,9 @@ func _process(delta):
 	speed_input = Input.get_axis("player_brake", "player_accelerate") * acceleration
 	turn_input = Input.get_axis("steer_right", "steer_left") * deg_to_rad(steering)
 	
-	# Handbrake turn mechanic
-	handbrake_turn()
+	# car boosting and drifting 
+	drift()
+	print_logs()
 	
 	# Turning and mesh movement
 	if linear_velocity.length() > turn_stop_limit:
@@ -80,19 +84,30 @@ func align_with_y(xform, new_y):
 	return xform.orthonormalized()
 
 # Car speeds up and turns are sharper 
-func handbrake_turn():
-	# shift
-	if Input.is_action_pressed("handbrake"):
+func drift():
+	# 'n'
+	if Input.is_action_pressed("handbrake") and turn_input and speed_input:
 		turn_speed = turn_speed_boost
-		acceleration = acceleration_boost
+		acceleration -= 1
+		if acceleration == acceleration_boost:
+			acceleration = acceleration_boost
+		if turn_input > 0:
+			apply_torque(torque)
+		if turn_input < 0:
+				apply_torque(-torque)
 	else:
 		reset()
-
-func reset():
-	turn_speed = orig_turn_speed
-	acceleration = orig_acceleration
 
 func jump():
 	# spacebar
 	if Input.is_action_just_pressed("bounce"):
 		apply_central_impulse(car_mesh.global_transform.basis.y * jump_factor)
+
+func reset():
+	turn_speed = orig_turn_speed
+	acceleration = orig_acceleration
+
+func print_logs():
+	print("Speed: ", speed_input)
+	print("Acceleration: ", acceleration)
+	print("Torque: ", torque)
