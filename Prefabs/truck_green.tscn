@@ -1,12 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://26ic8qveqk15"]
+[gd_scene load_steps=5 format=3 uid="uid://26ic8qveqk15"]
 
 [ext_resource type="PackedScene" uid="uid://dmgaomp58ixjc" path="res://Assets/KenneyCity Assets/truck_green.glb" id="1_bkhe3"]
 [ext_resource type="Script" path="res://Prefabs/truck_green.gd" id="2_yel46"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q715n"]
+friction = 0.5
+bounce = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5nfk6"]
 size = Vector3(1, 1.03842, 1.68506)
 
 [node name="Truck Green" instance=ExtResource("1_bkhe3")]
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_q715n")
+continuous_cd = true
 script = ExtResource("2_yel46")
 
 [node name="truck_green" parent="tmpParent" index="0"]
@@ -16,4 +23,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.523056, 0.00805664)
 shape = SubResource("BoxShape3D_5nfk6")
 
-[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

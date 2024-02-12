@@ -9,8 +9,10 @@ bounce = 0.1
 [sub_resource type="SphereShape3D" id="SphereShape3D_q0ht3"]
 
 [node name="Car" type="RigidBody3D" groups=["player"]]
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_4cqlq")
 gravity_scale = 5.0
+continuous_cd = true
 angular_damp = 10.0
 script = ExtResource("2_vs7hh")
 acceleration = 50.0

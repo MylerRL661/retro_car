@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://curoai7dbw5qb"]
+
+[ext_resource type="PackedScene" uid="uid://opfud4sedcd2" path="res://Assets/KenneyCity Assets/balconyLadder_bottom.glb" id="1_mqwq4"]
+[ext_resource type="PackedScene" uid="uid://d31oa5d18b5qm" path="res://Assets/KenneyCity Assets/balconyLadder_top.glb" id="2_g22vx"]
+[ext_resource type="PackedScene" uid="uid://dxjupf4mlia2x" path="res://Assets/KenneyCity Assets/balcony_typeA.glb" id="3_lj8o3"]
+[ext_resource type="PackedScene" uid="uid://ji4wkqynstn8" path="res://Assets/KenneyCity Assets/door_typeB.glb" id="4_w6koy"]
+[ext_resource type="PackedScene" uid="uid://cf073snl5xuet" path="res://Assets/KenneyCity Assets/roadAsphalt_center.glb" id="5_qdsvc"]
+[ext_resource type="PackedScene" uid="uid://5ui1cl03bttv" path="res://Assets/KenneyCity Assets/roadAsphalt_corner.glb" id="6_rfeuw"]
+[ext_resource type="PackedScene" uid="uid://cg4j3vtoj6fvo" path="res://Assets/KenneyCity Assets/roadAsphalt_pavement.glb" id="7_mcj2j"]
+
+[node name="MeshLib" type="Node3D"]
+
+[node name="BalconyLadder_bottom" parent="." instance=ExtResource("1_mqwq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9796, 0.0707815, 2.5995)
+
+[node name="balconyLadder_top2" parent="." instance=ExtResource("2_g22vx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.93212, -0.0275562, 2.54497)
+
+[node name="balcony_typeA2" parent="." instance=ExtResource("3_lj8o3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.82336, -0.036623, 2.5482)
+
+[node name="door_typeB2" parent="." instance=ExtResource("4_w6koy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.05225, 0.077996, 2.70855)
+
+[node name="roadAsphalt_center2" parent="." instance=ExtResource("5_qdsvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.99797, -0.136208, 3.963)
+
+[node name="roadAsphalt_corner2" parent="." instance=ExtResource("6_rfeuw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33813, -0.391895, 4.42223)
+
+[node name="roadAsphalt_pavement2" parent="." instance=ExtResource("7_mcj2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90688, 0, 2.78201)
