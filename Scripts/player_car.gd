@@ -24,6 +24,9 @@ var sphere_offset = Vector3.DOWN
 @export var jump_factor = 10
 @export var torque = Vector3(0, 0, 0)
 
+var min_flying_force: float = 500.0
+var max_flying_force: float = 1500.0
+
 #for caching original values
 var orig_turn_speed
 var orig_acceleration
@@ -53,7 +56,7 @@ func _process(delta):
 	
 	# car boosting and drifting 
 	drift()
-	print_logs()
+	#print_logs()
 	
 	# Turning and mesh movement
 	if linear_velocity.length() > turn_stop_limit:
