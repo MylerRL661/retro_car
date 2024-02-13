@@ -1,7 +1,7 @@
 extends RigidBody3D
 
-var min_flying_force: float = 500.0
-var max_flying_force: float = 1500.0
+var min_flying_force: float = 1
+var max_flying_force: float = 200
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
