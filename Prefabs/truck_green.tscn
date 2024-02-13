@@ -14,6 +14,8 @@ size = Vector3(1, 1.03842, 1.68506)
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_q715n")
 continuous_cd = true
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("2_yel46")
 
 [node name="truck_green" parent="tmpParent" index="0"]
