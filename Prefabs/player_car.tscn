@@ -24,6 +24,7 @@ turn_speed_boost = 5
 acceleration_boost = 25
 jump_factor = 8
 torque = Vector3(0, 0, 1.5)
+player_logging = true
 
 [node name="SphereCollider" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_q0ht3")
