@@ -7,7 +7,7 @@ extends RigidBody3D
 # Where to place the car mesh relative to the sphere
 var sphere_offset = Vector3.DOWN
 # Engine power
-@export var acceleration = 35.0
+@export var acceleration = 50.0
 # Turn amount, in degrees
 @export var steering = 18.0
 # How quickly the car turns
@@ -16,12 +16,6 @@ var sphere_offset = Vector3.DOWN
 @export var turn_stop_limit = 0.75
 # How much the body of the car tilts on a turn
 @export var body_tilt = 12
-# Used to make the car turn more during a hand brake turn
-@export var turn_speed_boost = 10
-# Used to make the car get a small speed boost during a hand brake turn
-@export var acceleration_boost = 65
-# Amount the car jumps by
-@export var jump_factor = 10
 @export var torque = Vector3(0, 0, 0)
 
 @export var player_logging = false
@@ -46,7 +40,7 @@ func _physics_process(delta):
 	car_mesh.position = position + sphere_offset
 	if ground_ray.is_colliding():
 		apply_central_force(car_mesh.global_transform.basis.z * speed_input)
-		jump()
+		jump(10)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -57,8 +51,12 @@ func _process(delta):
 	turn_input = Input.get_axis("steer_right", "steer_left") * deg_to_rad(steering)
 	
 	# car boosting and drifting 
-	drift()
-	boost()
+	if Input.is_action_pressed("boost") and speed_input:
+		boost(1, 80)
+	elif Input.is_action_pressed("handbrake") and turn_input and speed_input:
+		drift(10, 25)
+	else:
+		reset()
 	print_logs()
 	
 	# Turning and mesh movement
@@ -90,29 +88,21 @@ func align_with_y(xform, new_y):
 	return xform.orthonormalized()
 
 # Car speeds up and turns are sharper 
-func drift():
+func drift(turn_speed_drift, acceleration_drift):
 	# 'shift'
-	if Input.is_action_pressed("handbrake") and turn_input and speed_input:
-		turn_speed = turn_speed_boost
-		acceleration -= 1
-		if acceleration == acceleration_boost:
-			acceleration = acceleration_boost
-		if turn_input > 0:
-			apply_torque(torque)
-		if turn_input < 0:
-				apply_torque(-torque)
-	else:
-		reset()
+	print("DRIFT")
+	torque = Vector3(0, 0, 1.5)
+	turn_speed = turn_speed_drift
+	acceleration = acceleration_drift
+	apply_torque(torque)
 
-func boost():
+func boost(turn_speed_boost, acceleration_boost):
 	#'n'
-	if Input.is_action_pressed("boost") and speed_input:
-		print("BOOOOOST")
-		acceleration = acceleration_boost
-	else:
-		reset()
+	print("BOOOOOST")
+	acceleration = acceleration_boost
+	turn_speed = turn_speed_boost
 
-func jump():
+func jump(jump_factor):
 	# spacebar
 	if Input.is_action_just_pressed("bounce"):
 		apply_central_impulse(car_mesh.global_transform.basis.y * jump_factor)
@@ -125,4 +115,5 @@ func print_logs():
 	if player_logging:
 		print("Speed: ", speed_input)
 		print("Acceleration: ", acceleration)
+		print("Turn Speed: ", turn_speed)
 		print("Torque: ", torque)
