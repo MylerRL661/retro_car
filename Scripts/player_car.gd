@@ -52,7 +52,7 @@ func _process(delta):
 	
 	# car boosting and drifting 
 	if Input.is_action_pressed("boost") and speed_input:
-		boost(1, 80)
+		boost(1, 65)
 	elif Input.is_action_pressed("handbrake") and turn_input and speed_input:
 		drift(10, 25)
 	else:
