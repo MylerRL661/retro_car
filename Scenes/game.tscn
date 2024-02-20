@@ -75,7 +75,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.872, -2.282)
 fov = 60.0
 script = ExtResource("5_hmiug")
 offset_y = Vector3(0, 2, 0)
-offset_z = Vector3(0, 0, 22)
+offset_z = Vector3(0, 0, 3)
 
 [editable path="Player"]
 [editable path="Player/Truck"]
