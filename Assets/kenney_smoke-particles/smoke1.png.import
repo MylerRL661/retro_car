@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3v40g4gbwofs"
-path.s3tc="res://.godot/imported/sky-9.png-8a92c6c5ff25e72d646ef30c41570548.s3tc.ctex"
+uid="uid://cbikmxbg8cnhd"
+path.s3tc="res://.godot/imported/smoke1.png-696c478943d73a8d881274ec434ca8fc.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Images/Skyboxes/sky-9.png"
-dest_files=["res://.godot/imported/sky-9.png-8a92c6c5ff25e72d646ef30c41570548.s3tc.ctex"]
+source_file="res://Assets/kenney_smoke-particles/smoke1.png"
+dest_files=["res://.godot/imported/smoke1.png-696c478943d73a8d881274ec434ca8fc.s3tc.ctex"]
 
 [params]
 
