@@ -46,6 +46,7 @@ func _physics_process(delta):
 func _process(delta):
 	# Forward and backward driving 
 	if not ground_ray.is_colliding():
+		reset_car_position()
 		return
 	speed_input = Input.get_axis("player_brake", "player_accelerate") * acceleration
 	turn_input = Input.get_axis("steer_right", "steer_left") * deg_to_rad(steering)
@@ -56,7 +57,7 @@ func _process(delta):
 	elif Input.is_action_pressed("handbrake") and turn_input and speed_input:
 		drift(10, 25)
 	else:
-		reset()
+		reset_vars()
 	print_logs()
 	
 	# Turning and mesh movement
@@ -106,10 +107,21 @@ func jump(jump_factor):
 	# spacebar
 	if Input.is_action_just_pressed("bounce"):
 		apply_central_impulse(car_mesh.global_transform.basis.y * jump_factor)
+		apply_central_impulse(car_mesh.global_transform.basis.z * jump_factor)
 
-func reset():
+func reset_vars():
 	turn_speed = orig_turn_speed
 	acceleration = orig_acceleration
+
+func reset_car_position():
+	if Input.is_action_just_pressed("reset_position"):
+		#player position
+		transform.origin.y = 1
+		rotation_degrees = Vector3(0, 0, 0)
+		#truck mesh position
+		car_mesh.transform.origin.y = 1
+		car_mesh.rotation_degrees = Vector3(0, 0, 0)
+		print("RESET")
 
 func print_logs():
 	if player_logging:

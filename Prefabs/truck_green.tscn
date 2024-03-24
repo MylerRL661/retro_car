@@ -5,13 +5,14 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q715n"]
 friction = 0.5
-bounce = 1.0
+bounce = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5nfk6"]
 size = Vector3(1, 1.03842, 1.68506)
 
 [node name="Truck Green" instance=ExtResource("1_bkhe3")]
 collision_layer = 2
+mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_q715n")
 continuous_cd = true
 max_contacts_reported = 5
