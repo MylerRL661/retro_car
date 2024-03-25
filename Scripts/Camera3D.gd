@@ -2,7 +2,6 @@ extends Camera3D
 
 @onready var target = $"../Player/Truck/truck_grey/CamTarget"
 
-@export var follow_speed = 100.0
 @export var offset_y = Vector3.ZERO
 @export var offset_z = Vector3.ZERO
 @export var lerp_speed = 2
