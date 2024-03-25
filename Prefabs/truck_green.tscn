@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://26ic8qveqk15"]
 
 [ext_resource type="PackedScene" uid="uid://dmgaomp58ixjc" path="res://Assets/KenneyCity Assets/truck_green.glb" id="1_bkhe3"]
-[ext_resource type="Script" path="res://Prefabs/truck_green.gd" id="2_yel46"]
+[ext_resource type="Script" path="res://Scripts/truck_green.gd" id="2_yel46"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q715n"]
 friction = 0.5
