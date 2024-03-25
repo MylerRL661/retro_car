@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dm0on4wcdbjwp"]
+[gd_scene load_steps=13 format=3 uid="uid://dm0on4wcdbjwp"]
 
 [ext_resource type="PackedScene" uid="uid://bee6ql2cy1erm" path="res://Prefabs/truck_grey.tscn" id="2_4ujud"]
 [ext_resource type="Script" path="res://Scripts/player_car.gd" id="2_vs7hh"]
 [ext_resource type="Texture2D" uid="uid://cbikmxbg8cnhd" path="res://Assets/kenney_smoke-particles/smoke1.png" id="3_qjplt"]
+[ext_resource type="Texture2D" uid="uid://bu4kc3hf3qdj8" path="res://Assets/kenney_smoke-particles/PNG/Explosion/explosion07.png" id="4_bkmtf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4cqlq"]
 bounce = 0.1
@@ -34,12 +35,13 @@ offsets = PackedFloat32Array(0, 0.286667, 0.686667)
 colors = PackedColorArray(1, 0.254902, 0.0823529, 1, 0.956863, 0.4, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_n07s3"]
+transparency = 1
 shading_mode = 0
-albedo_color = Color(1, 0.388235, 0.105882, 1)
+albedo_texture = ExtResource("4_bkmtf")
 
 [sub_resource type="QuadMesh" id="QuadMesh_xmgnu"]
 material = SubResource("ORMMaterial3D_n07s3")
-size = Vector2(0.1, 0.1)
+size = Vector2(1, 0.1)
 subdivide_width = 6
 subdivide_depth = 6
 orientation = 0
@@ -89,6 +91,7 @@ color_ramp = SubResource("Gradient_fxkol")
 
 [node name="DriftParticles" type="Node3D" parent="Truck/truck_grey" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10206, -0.0274094, -0.0198746)
+visible = false
 
 [node name="DriftParticlesR" type="CPUParticles3D" parent="Truck/truck_grey/DriftParticles"]
 transform = Transform3D(-0.999972, -5.79787e-11, -0.00745213, 0.00446296, -0.800836, -0.598867, -0.00596793, -0.598884, 0.800814, -0.294083, 0, -0.480884)
@@ -113,7 +116,7 @@ color = Color(0.752941, 0.752941, 0.752941, 1)
 color_ramp = SubResource("Gradient_fxkol")
 
 [node name="DriftParticlesL" type="CPUParticles3D" parent="Truck/truck_grey/DriftParticles"]
-transform = Transform3D(0.999677, -0.0113925, 0.0226846, 0.00446296, -0.800836, -0.598867, 0.0249892, 0.598776, -0.800527, 0.56575, 0, -0.480884)
+transform = Transform3D(0.999678, -0.0113925, 0.0226846, 0.0229068, 0.789944, -0.612752, -0.0109388, 0.613074, 0.78995, 0.56575, 0, -0.480884)
 amount = 15
 lifetime = 0.2
 preprocess = 1.0
@@ -127,11 +130,15 @@ spread = 0.0
 gravity = Vector3(0, 0.1, -1)
 angular_velocity_min = 30.0
 angular_velocity_max = 30.0
+linear_accel_min = -100.0
 linear_accel_max = 4.0
 scale_amount_min = 3.0
 scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_qbwmb")
 color = Color(0.752941, 0.752941, 0.752941, 1)
 color_ramp = SubResource("Gradient_fxkol")
+
+[node name="CamTarget" type="Node3D" parent="Truck/truck_grey" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600355, 0.394796)
 
 [editable path="Truck"]

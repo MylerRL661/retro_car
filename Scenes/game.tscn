@@ -114,6 +114,9 @@ player_logging = false
 [node name="Truck" parent="Player" index="1"]
 top_level = true
 
+[node name="CamTarget" parent="Player/Truck/truck_grey" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.860963, -0.086478)
+
 [node name="MainCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.872, -2.282)
 fov = 60.0
