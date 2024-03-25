@@ -3,6 +3,8 @@ extends RigidBody3D
 # Refs
 @onready var car_mesh = $Truck/truck_grey
 @onready var ground_ray = $Truck/truck_grey/RayCast3D
+@onready var smoke_particles = $Truck/truck_grey/SmokeParticles
+@onready var drift_particles = $Truck/truck_grey/DriftParticles
 
 # Where to place the car mesh relative to the sphere
 var sphere_offset = Vector3.DOWN
@@ -34,6 +36,8 @@ var turn_input = 0
 func _ready():
 	orig_turn_speed = turn_speed
 	orig_acceleration = acceleration
+	smoke_particles.emitting = true
+	drift_particles.set_visible(false)
 
 # Car mesh following the under-lying sphere
 func _physics_process(delta):
@@ -56,8 +60,12 @@ func _process(delta):
 		boost(1, 65)
 	elif Input.is_action_pressed("handbrake") and turn_input and speed_input:
 		drift(10, 25)
+		drift_particles.set_visible(true)
+		smoke_particles.emitting = false
 	else:
 		reset_vars()
+		drift_particles.set_visible(false)
+		smoke_particles.emitting = true
 	print_logs()
 	
 	# Turning and mesh movement
@@ -107,7 +115,7 @@ func jump(jump_factor):
 	# spacebar
 	if Input.is_action_just_pressed("bounce"):
 		apply_central_impulse(car_mesh.global_transform.basis.y * jump_factor)
-		apply_central_impulse(car_mesh.global_transform.basis.z * jump_factor)
+		#apply_central_impulse(car_mesh.global_transform.basis.z * jump_factor)
 
 func reset_vars():
 	turn_speed = orig_turn_speed

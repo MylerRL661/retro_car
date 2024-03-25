@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dm0on4wcdbjwp"]
+[gd_scene load_steps=12 format=3 uid="uid://dm0on4wcdbjwp"]
 
 [ext_resource type="PackedScene" uid="uid://bee6ql2cy1erm" path="res://Prefabs/truck_grey.tscn" id="2_4ujud"]
 [ext_resource type="Script" path="res://Scripts/player_car.gd" id="2_vs7hh"]
@@ -30,8 +30,19 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.264045, 0.472527), 0.0, 0.0, 0
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_fxkol"]
-offsets = PackedFloat32Array(0, 0.686667)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.286667, 0.686667)
+colors = PackedColorArray(1, 0.254902, 0.0823529, 1, 0.956863, 0.4, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_n07s3"]
+shading_mode = 0
+albedo_color = Color(1, 0.388235, 0.105882, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_xmgnu"]
+material = SubResource("ORMMaterial3D_n07s3")
+size = Vector2(0.1, 0.1)
+subdivide_width = 6
+subdivide_depth = 6
+orientation = 0
 
 [node name="Car" type="RigidBody3D" groups=["player"]]
 collision_mask = 3
@@ -56,11 +67,59 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10206, -0.0274094, -0.0198
 
 [node name="SmokeParticles" type="CPUParticles3D" parent="Truck/truck_grey" index="1"]
 transform = Transform3D(-0.999972, -5.79787e-11, -0.00745213, 0.00446296, -0.800836, -0.598867, -0.00596793, -0.598884, 0.800814, -0.10206, -0.0274094, -0.500759)
+emitting = false
 amount = 15
 lifetime = 3.59
 randomness = 0.19
 lifetime_randomness = 0.32
 mesh = SubResource("QuadMesh_jhitx")
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 0, -1)
+spread = 0.0
+gravity = Vector3(0, 0.1, -1)
+angular_velocity_min = 30.0
+angular_velocity_max = 30.0
+linear_accel_max = 4.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_qbwmb")
+color = Color(0.752941, 0.752941, 0.752941, 1)
+color_ramp = SubResource("Gradient_fxkol")
+
+[node name="DriftParticles" type="Node3D" parent="Truck/truck_grey" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10206, -0.0274094, -0.0198746)
+
+[node name="DriftParticlesR" type="CPUParticles3D" parent="Truck/truck_grey/DriftParticles"]
+transform = Transform3D(-0.999972, -5.79787e-11, -0.00745213, 0.00446296, -0.800836, -0.598867, -0.00596793, -0.598884, 0.800814, -0.294083, 0, -0.480884)
+amount = 15
+lifetime = 0.2
+preprocess = 1.0
+randomness = 0.19
+lifetime_randomness = 0.32
+mesh = SubResource("QuadMesh_xmgnu")
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 0, -1)
+spread = 0.0
+gravity = Vector3(0, 0.1, -1)
+angular_velocity_min = 30.0
+angular_velocity_max = 30.0
+linear_accel_max = 4.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_qbwmb")
+color = Color(0.752941, 0.752941, 0.752941, 1)
+color_ramp = SubResource("Gradient_fxkol")
+
+[node name="DriftParticlesL" type="CPUParticles3D" parent="Truck/truck_grey/DriftParticles"]
+transform = Transform3D(0.999677, -0.0113925, 0.0226846, 0.00446296, -0.800836, -0.598867, 0.0249892, 0.598776, -0.800527, 0.56575, 0, -0.480884)
+amount = 15
+lifetime = 0.2
+preprocess = 1.0
+randomness = 0.19
+lifetime_randomness = 0.32
+mesh = SubResource("QuadMesh_xmgnu")
 emission_shape = 1
 emission_sphere_radius = 0.2
 direction = Vector3(0, 0, -1)
