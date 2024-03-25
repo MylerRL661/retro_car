@@ -64,11 +64,14 @@ shape = SubResource("SphereShape3D_q0ht3")
 
 [node name="Truck" parent="." instance=ExtResource("2_4ujud")]
 
+[node name="truck_grey" parent="Truck" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10206, -0.421203, 0.0198746)
+
 [node name="RayCast3D" type="RayCast3D" parent="Truck/truck_grey" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10206, -0.0274094, -0.0198746)
 
 [node name="SmokeParticles" type="CPUParticles3D" parent="Truck/truck_grey" index="1"]
-transform = Transform3D(-0.999972, -5.79787e-11, -0.00745213, 0.00446296, -0.800836, -0.598867, -0.00596793, -0.598884, 0.800814, -0.10206, -0.0274094, -0.500759)
+transform = Transform3D(-0.999972, -5.79787e-11, -0.00745213, 0.00446296, -0.800836, -0.598867, -0.00596793, -0.598884, 0.800814, -0.10206, 0.109326, -0.243268)
 emitting = false
 amount = 15
 lifetime = 3.59
