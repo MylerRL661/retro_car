@@ -18,6 +18,8 @@ continuous_cd = true
 max_contacts_reported = 5
 contact_monitor = true
 script = ExtResource("2_yel46")
+speed = 1
+accel = 2
 
 [node name="truck_green" parent="tmpParent" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -27,7 +29,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.523056, 0.00805664)
 shape = SubResource("BoxShape3D_5nfk6")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="2"]
-path_desired_distance = 86.35
-target_desired_distance = 97.45
+radius = 1.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

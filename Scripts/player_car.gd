@@ -19,7 +19,7 @@ var sphere_offset = Vector3.DOWN
 # How much the body of the car tilts on a turn
 @export var body_tilt = 12
 @export var torque = Vector3(0, 0, 0)
-
+#console log boolean for player info
 @export var player_logging = false
 
 var min_flying_force: float = 500.0

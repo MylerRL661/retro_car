@@ -20,19 +20,23 @@ sky = SubResource("Sky_0lew0")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4xw6y"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5cgtl"]
-size = Vector3(100, 0, 100)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_ffk3q"]
-size = Vector2(100, 100)
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_k7np2"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_pk47p"]
 size = Vector3(1, 2, 100.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0w3pm"]
 size = Vector3(1, 2, 100.5)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_7k3hd"]
+vertices = PackedVector3Array(-49.5, 0.5, -49.5, -49.5, 0.5, 49.5, 49.5, 0.5, 49.5, 49.5, 0.5, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+agent_height = 1.0
+agent_radius = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5cgtl"]
+size = Vector3(100, 0, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ffk3q"]
+size = Vector2(100, 100)
 
 [node name="Game" type="Node3D"]
 
@@ -48,18 +52,6 @@ environment = SubResource("Environment_t1pt6")
 camera_attributes = SubResource("CameraAttributesPractical_mbmso")
 
 [node name="TempWorldGeometry" type="Node3D" parent="."]
-
-[node name="GroundBody" type="StaticBody3D" parent="TempWorldGeometry"]
-physics_material_override = SubResource("PhysicsMaterial_4xw6y")
-
-[node name="GroundCollider" type="CollisionShape3D" parent="TempWorldGeometry/GroundBody"]
-shape = SubResource("BoxShape3D_5cgtl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TempWorldGeometry/GroundBody/GroundCollider"]
-mesh = SubResource("PlaneMesh_ffk3q")
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="TempWorldGeometry/GroundBody"]
-navigation_mesh = SubResource("NavigationMesh_k7np2")
 
 [node name="LeftBorder" type="StaticBody3D" parent="TempWorldGeometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
@@ -104,6 +96,18 @@ shape = SubResource("BoxShape3D_pk47p")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TempWorldGeometry/BottomBorder/CollisionShape3D"]
 mesh = SubResource("BoxMesh_0w3pm")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="TempWorldGeometry"]
+navigation_mesh = SubResource("NavigationMesh_7k3hd")
+
+[node name="GroundBody" type="StaticBody3D" parent="TempWorldGeometry/NavigationRegion3D"]
+physics_material_override = SubResource("PhysicsMaterial_4xw6y")
+
+[node name="GroundCollider" type="CollisionShape3D" parent="TempWorldGeometry/NavigationRegion3D/GroundBody"]
+shape = SubResource("BoxShape3D_5cgtl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TempWorldGeometry/NavigationRegion3D/GroundBody/GroundCollider"]
+mesh = SubResource("PlaneMesh_ffk3q")
 
 [node name="Truck Green" parent="." instance=ExtResource("3_4yp4v")]
 transform = Transform3D(0.981952, 0, 0.18913, 0, 1, 0, -0.18913, 0, 0.981952, 4.35228, 0.215838, -4.02522)
