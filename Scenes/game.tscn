@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b886bx0ihn5su"]
+[gd_scene load_steps=16 format=3 uid="uid://b886bx0ihn5su"]
 
 [ext_resource type="Texture2D" uid="uid://3l4yhgqws7bm" path="res://Assets/Images/Skyboxes/sky-2-small.png" id="1_vvfwi"]
 [ext_resource type="PackedScene" uid="uid://26ic8qveqk15" path="res://Prefabs/truck_green.tscn" id="3_4yp4v"]
@@ -32,11 +32,13 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 agent_height = 1.0
 agent_radius = 1.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5cgtl"]
-size = Vector3(100, 0, 100)
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5vo0e"]
+bounce = 0.35
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ffk3q"]
-size = Vector2(100, 100)
+[sub_resource type="BoxShape3D" id="BoxShape3D_fuoox"]
+size = Vector3(54.115, 1, 44.225)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ha3ld"]
 
 [node name="Game" type="Node3D"]
 
@@ -101,13 +103,14 @@ mesh = SubResource("BoxMesh_0w3pm")
 navigation_mesh = SubResource("NavigationMesh_7k3hd")
 
 [node name="GroundBody" type="StaticBody3D" parent="TempWorldGeometry/NavigationRegion3D"]
-physics_material_override = SubResource("PhysicsMaterial_4xw6y")
+physics_material_override = SubResource("PhysicsMaterial_5vo0e")
 
-[node name="GroundCollider" type="CollisionShape3D" parent="TempWorldGeometry/NavigationRegion3D/GroundBody"]
-shape = SubResource("BoxShape3D_5cgtl")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TempWorldGeometry/NavigationRegion3D/GroundBody"]
+shape = SubResource("BoxShape3D_fuoox")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TempWorldGeometry/NavigationRegion3D/GroundBody/GroundCollider"]
-mesh = SubResource("PlaneMesh_ffk3q")
+[node name="CSGMesh3D" type="CSGMesh3D" parent="TempWorldGeometry/NavigationRegion3D/GroundBody/CollisionShape3D"]
+transform = Transform3D(54.12, 0, 0, 0, 1, 0, 0, 0, 44.25, 0, 0, 0)
+mesh = SubResource("BoxMesh_ha3ld")
 
 [node name="Truck Green" parent="." instance=ExtResource("3_4yp4v")]
 transform = Transform3D(0.981952, 0, 0.18913, 0, 1, 0, -0.18913, 0, 0.981952, 4.35228, 0.215838, -4.02522)
