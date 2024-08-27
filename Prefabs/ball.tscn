@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctgwqp3udae85"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_26r5b"]
+friction = 0.35
+bounce = 0.74
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1ugvr"]
+
+[node name="RigidBody3D" type="RigidBody3D"]
+mass = 0.08
+physics_material_override = SubResource("PhysicsMaterial_26r5b")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(2.645, 0, 0, 0, 2.645, 0, 0, 0, 2.645, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.645, 0, 0, 0, 2.645, 0, 0, 0, 2.645, 0, 0, 0)
+shape = SubResource("SphereShape3D_1ugvr")

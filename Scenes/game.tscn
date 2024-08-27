@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://b886bx0ihn5su"]
 
 [ext_resource type="Texture2D" uid="uid://3l4yhgqws7bm" path="res://Assets/Images/Skyboxes/sky-2-small.png" id="1_vvfwi"]
-[ext_resource type="PackedScene" uid="uid://26ic8qveqk15" path="res://Prefabs/truck_green.tscn" id="3_4yp4v"]
 [ext_resource type="PackedScene" uid="uid://dm0on4wcdbjwp" path="res://Prefabs/player_car.tscn" id="4_v2jxy"]
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="5_hmiug"]
+[ext_resource type="PackedScene" uid="uid://ctgwqp3udae85" path="res://Prefabs/ball.tscn" id="5_onx54"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ryk6u"]
 panorama = ExtResource("1_vvfwi")
@@ -21,7 +21,7 @@ sky = SubResource("Sky_0lew0")
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4xw6y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pk47p"]
-size = Vector3(1, 2, 100.5)
+size = Vector3(1, 37.8906, 100.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0w3pm"]
 size = Vector3(1, 2, 100.5)
@@ -36,7 +36,7 @@ agent_radius = 1.0
 bounce = 0.35
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fuoox"]
-size = Vector3(54.115, 1, 44.225)
+size = Vector3(147.048, 1, 186.565)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ha3ld"]
 
@@ -64,6 +64,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.409607, 0.0242004)
 shape = SubResource("BoxShape3D_pk47p")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TempWorldGeometry/LeftBorder/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 20, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_0w3pm")
 
 [node name="RightBorder" type="StaticBody3D" parent="TempWorldGeometry"]
@@ -75,6 +76,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.409607, 0.0242004)
 shape = SubResource("BoxShape3D_pk47p")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TempWorldGeometry/RightBorder/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 20, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_0w3pm")
 
 [node name="TopBorder" type="StaticBody3D" parent="TempWorldGeometry"]
@@ -86,6 +88,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.409607, 0.0242004)
 shape = SubResource("BoxShape3D_pk47p")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TempWorldGeometry/TopBorder/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 20, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_0w3pm")
 
 [node name="BottomBorder" type="StaticBody3D" parent="TempWorldGeometry"]
@@ -93,10 +96,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 physics_material_override = SubResource("PhysicsMaterial_4xw6y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TempWorldGeometry/BottomBorder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.409607, 0.0242004)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.3549, 0.0242004)
 shape = SubResource("BoxShape3D_pk47p")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TempWorldGeometry/BottomBorder/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 7, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_0w3pm")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="TempWorldGeometry"]
@@ -106,17 +110,12 @@ navigation_mesh = SubResource("NavigationMesh_7k3hd")
 physics_material_override = SubResource("PhysicsMaterial_5vo0e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TempWorldGeometry/NavigationRegion3D/GroundBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.7613, 0, -0.841114)
 shape = SubResource("BoxShape3D_fuoox")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="TempWorldGeometry/NavigationRegion3D/GroundBody/CollisionShape3D"]
-transform = Transform3D(54.12, 0, 0, 0, 1, 0, 0, 0, 44.25, 0, 0, 0)
+transform = Transform3D(152, 0, 0, 0, 1, 0, 0, 0, 186, 0, 0, 0)
 mesh = SubResource("BoxMesh_ha3ld")
-
-[node name="Truck Green" parent="." instance=ExtResource("3_4yp4v")]
-transform = Transform3D(0.981952, 0, 0.18913, 0, 1, 0, -0.18913, 0, 0.981952, 4.35228, 0.215838, -4.02522)
-
-[node name="Truck Green2" parent="." instance=ExtResource("3_4yp4v")]
-transform = Transform3D(-0.753426, 0, -0.657533, 0, 1, 0, 0.657533, 0, -0.753426, 4.35228, 0.165431, 2.48391)
 
 [node name="Player" parent="." instance=ExtResource("4_v2jxy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.650873, 0)
@@ -135,6 +134,9 @@ fov = 60.0
 script = ExtResource("5_hmiug")
 offset_y = Vector3(0, 2, 0)
 offset_z = Vector3(0, 0, 3)
+
+[node name="Ball_RigidBody3D" parent="." instance=ExtResource("5_onx54")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.07259, 14.5514)
 
 [editable path="Player"]
 [editable path="Player/Truck"]
